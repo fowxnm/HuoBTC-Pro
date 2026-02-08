@@ -1,0 +1,62 @@
+/* ═══════ Hero Carousel ═══════ */
+.hc-wrap {
+  position: relative;
+  margin: 0 12px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,.5);
+  aspect-ratio: 16 / 8;        /* 宽扁比例，移动端黄金比 */
+  background: #0d0e0f;
+}
+
+.hc-track {
+  display: flex;
+  height: 100%;
+  transition: transform .45s cubic-bezier(.4, 0, .2, 1);
+  will-change: transform;
+}
+
+.hc-slide {
+  flex: none;
+  width: 100%;
+  height: 100%;
+}
+
+.hc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* ── 圆点指示器 ── */
+.hc-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.hc-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(255,255,255,.3);
+  transition: all .25s;
+}
+
+.hc-dot-on {
+  width: 18px;
+  border-radius: 3px;
+  background: #00f0ff;
+  box-shadow: 0 0 8px rgba(0,240,255,.5);
+}

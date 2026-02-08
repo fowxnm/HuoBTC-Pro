@@ -1,0 +1,680 @@
+/* ═══════════════════════════════════════════════════════
+   PCHome — 1:1 复刻 Vue 源码首页动画与视觉
+   ═══════════════════════════════════════════════════════ */
+
+/* ── CSS 变量 ────────────────────────────────────────── */
+.home-root {
+  --buy: #00f0ff;
+  --sell: #ff4834;
+  --bg: #0a0a12;
+  --surface: #0d0e0f;
+  --surface2: #161b22;
+  --border: #2c2c3e;
+  --text: #fff;
+  --text2: #cbd9da;
+  --text3: #8b949e;
+}
+
+.home-root {
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── 通用 Glow ───────────────────────────────────────── */
+.text-glow {
+  color: var(--buy);
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+/* ═══════════ HERO ═══════════ */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── 视频背景 ── */
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* ── 浮动币图层（复刻 Vue） ── */
+.hero-float-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-float {
+  position: absolute;
+  pointer-events: none;
+}
+
+.hero-float img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hero-ball1 { width: 120px; left: 5%;  top: 12%; animation: heroFloat1 6s ease-in-out infinite; }
+.hero-ball2 { width: 90px;  left: 3%;  top: 55%; animation: heroFloat2 7s ease-in-out infinite 0.5s; }
+.hero-ball3 { width: 70px;  left: 18%; top: 78%; animation: heroFloat1 5s ease-in-out infinite 1s; }
+.hero-ball4 { width: 110px; right: 5%; top: 10%; animation: heroFloat2 6.5s ease-in-out infinite 0.3s; }
+.hero-ball5 { width: 80px;  right: 8%; top: 50%; animation: heroFloat1 7.5s ease-in-out infinite 0.8s; }
+.hero-ball6 { width: 65px;  right: 15%;top: 80%; animation: heroFloat2 5.5s ease-in-out infinite 1.2s; }
+
+@keyframes heroFloat1 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes heroFloat2 {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateY(18px); }
+}
+
+/* ── Hero 文案 ───────────────────────────────────────── */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 850px;
+  padding: 0 20px;
+}
+
+.hero-title {
+  font-size: 50px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero-sub {
+  font-size: 20px;
+  color: var(--text2);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.hero-operate {
+  display: flex;
+  gap: 0;
+  justify-content: center;
+  margin-bottom: 48px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-input {
+  flex: 1;
+  height: 54px;
+  padding: 0 20px;
+  border-radius: 99px 0 0 99px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-right: none;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.hero-input::placeholder {
+  color: var(--text3);
+}
+
+.hero-input:focus {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hero-operate .btn-primary {
+  border-radius: 0 99px 99px 0;
+  min-width: 140px;
+}
+
+/* ── 按钮 ────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  height: 54px;
+  padding: 0 32px;
+  border-radius: 99px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: var(--buy);
+  color: #000;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.glow-btn {
+  box-shadow: 0 0 24px rgba(0, 240, 255, 0.35);
+}
+
+.glow-btn:hover {
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.5);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 160px;
+  height: 54px;
+  padding: 0 32px;
+  border-radius: 99px;
+  font-size: 18px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.btn-outline:hover {
+  border-color: rgba(0, 240, 255, 0.5);
+  color: var(--buy);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 40px;
+  border-radius: 24px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: #000;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.btn-ghost:hover { border-color: var(--buy); color: var(--buy); }
+.btn-ghost:hover svg { transform: translateX(3px); }
+.btn-ghost svg { transition: transform 0.2s; }
+
+/* ── 统计条 ──────────────────────────────────────────── */
+.stats-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  border-radius: 999px;
+  padding: 24px 50px;
+}
+
+.stat-item { display: flex; flex-direction: column; align-items: center; padding: 0 30px; }
+.stat-num { font-size: 32px; font-weight: 600; line-height: 1.2; }
+.stat-label { font-size: 14px; color: var(--text3); margin-top: 4px; }
+.stat-divider { width: 1px; height: 40px; background: rgba(255, 255, 255, 0.15); }
+
+/* ═══════════ 渐入动画 ═══════════ */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.delay1 { animation-delay: 0.15s; }
+.delay2 { animation-delay: 0.3s; }
+.delay3 { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 滚动触发动画 */
+[data-anim] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+[data-anim].anim-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════ 跑马灯 ═══════════ */
+.ticker-bar {
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: #0f0f16;
+  height: 46px;
+}
+
+.ticker-track {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  animation: tickerScroll 30s linear infinite;
+  width: max-content;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px;
+  font-size: 15px;
+  white-space: nowrap;
+  height: 46px;
+}
+
+.ticker-sym { color: #fff; }
+.ticker-price { font-family: monospace; color: var(--text3); transition: color 0.15s; }
+.tk-up { color: var(--buy) !important; }
+.tk-down { color: var(--sell) !important; }
+
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+/* ═══════════ 通用 Section ═══════════ */
+.section {
+  padding: 100px 0;
+}
+
+.section-dark {
+  background: var(--surface);
+}
+
+.section-inner {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 42px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.section-cta {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* ═══════════ 行情列表 ═══════════ */
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.market-card {
+  padding: 24px;
+  border-radius: 18px;
+  background: var(--surface);
+  cursor: pointer;
+  transition: all 0.25s;
+  border: 1px solid transparent;
+}
+
+.market-card:hover {
+  border-color: rgba(0, 240, 255, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 240, 255, 0.08);
+}
+
+.mc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.mc-symbol { font-size: 18px; font-weight: 600; }
+.mc-type { font-size: 12px; color: var(--text3); text-transform: capitalize; padding: 2px 10px; border-radius: 10px; background: rgba(255,255,255,0.06); }
+.mc-price { font-size: 24px; font-family: monospace; font-weight: 600; transition: color 0.15s; color: var(--text3); }
+.price-up { color: var(--buy); }
+.price-down { color: var(--sell); }
+.skeleton-card { min-height: 90px; }
+
+/* ═══════════ AI 策略 ═══════════ */
+.ai-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 30px;
+}
+
+.ai-card {
+  border-radius: 18px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 24px;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.ai-card:hover {
+  border-color: rgba(0, 240, 255, 0.3);
+  transform: translateY(-3px);
+}
+
+.ai-pair { font-size: 18px; font-weight: 600; margin-bottom: 16px; }
+
+.ai-sparkline {
+  height: 60px;
+  margin-bottom: 16px;
+}
+
+.ai-sparkline svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ai-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+}
+
+.ai-stats > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ai-label { font-size: 12px; color: var(--text3); }
+.ai-val { font-size: 18px; font-weight: 600; }
+
+.ai-orb-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.2) 0%, transparent 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.ai-orb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.8) 0%, rgba(0, 240, 255, 0.2) 70%);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+/* ═══════════ NFT ═══════════ */
+.nft-section {
+  background: var(--surface);
+}
+
+/* 画廊网格 */
+.nft-gallery {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.nft-card {
+  border-radius: 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nft-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(155, 89, 220, 0.4);
+  box-shadow: 0 12px 40px rgba(155, 89, 220, 0.15);
+}
+
+.nft-img-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #161b22;
+}
+
+.nft-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.nft-card:hover .nft-img {
+  transform: scale(1.08);
+}
+
+.nft-info {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nft-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nft-price {
+  font-size: 13px;
+  font-family: monospace;
+  color: var(--buy);
+  font-weight: 500;
+}
+
+/* 浮动动画 */
+.nft-float1 { animation: nftFloat1 4s ease-in-out infinite; }
+.nft-float2 { animation: nftFloat2 5s ease-in-out infinite; }
+.nft-float3 { animation: nftFloat1 4.5s ease-in-out infinite; animation-delay: 0.5s; }
+
+@keyframes nftFloat1 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes nftFloat2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ═══════════ NEWS ═══════════ */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface2);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+
+.news-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--buy);
+  box-shadow: 0 8px 32px rgba(0, 240, 255, 0.08);
+}
+
+.news-img-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #111;
+}
+
+.news-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+
+.news-card:hover .news-img {
+  transform: scale(1.06);
+}
+
+.news-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.news-tag {
+  display: inline-block;
+  width: fit-content;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--buy);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.news-title {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+  color: #fff;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-desc {
+  font-size: 13px;
+  color: var(--text3);
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-date {
+  font-size: 12px;
+  color: var(--text3);
+  opacity: 0.7;
+  margin-top: auto;
+}
+
+/* ═══════════ FAQ ═══════════ */
+.faq-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  max-height: 70px;
+  transition: max-height 0.35s ease;
+  cursor: pointer;
+}
+
+.faq-item.faq-open {
+  max-height: 300px;
+}
+
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 16px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.faq-icon {
+  font-size: 24px;
+  color: var(--buy);
+  transition: transform 0.3s;
+}
+
+.faq-open .faq-icon { transform: rotate(180deg); }
+
+.faq-a {
+  padding: 0 16px 20px;
+  font-size: 15px;
+  color: var(--text3);
+  line-height: 1.6;
+}
+
+/* ═══════════ 响应式（仅PC端内部，非媒体查询适配） ═══════════ */
+@media (max-width: 1024px) {
+  .hero-title { font-size: 36px; }
+  .hero-sub { font-size: 16px; }
+  .stats-pill { padding: 18px 24px; }
+  .stat-num { font-size: 24px; }
+  .section-header h2 { font-size: 30px; }
+  .ai-grid { grid-template-columns: 1fr; }
+  .nft-gallery { grid-template-columns: repeat(3, 1fr); }
+  .news-grid { grid-template-columns: 1fr; }
+  .faq-list { grid-template-columns: 1fr; }
+  .orb-cyan, .orb-purple { width: 50px; height: 50px; }
+  .orb-cyan-sm { width: 30px; height: 30px; }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#0a0a12" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <title>HuoBTC</title>
+    <script>
+      // 只拦截缩放手势，不影响正常单指滚动
+      document.addEventListener('gesturestart', function(e){ e.preventDefault(); }, {passive:false});
+      document.addEventListener('gesturechange', function(e){ e.preventDefault(); }, {passive:false});
+      // 禁止双击缩放
+      var lt=0;
+      document.addEventListener('touchend', function(e){
+        var n=Date.now(); if(n-lt<=300){e.preventDefault();} lt=n;
+      }, {passive:false});
+      // 只拦截双指（缩放），单指必须放行让页面正常滚动
+      document.addEventListener('touchmove', function(e){
+        if(e.touches.length>1){e.preventDefault();}
+        // 单指 touchmove 不拦截 → 正常滚动
+      }, {passive:false});
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/entry.tsx"></script>
+  </body>
+</html>

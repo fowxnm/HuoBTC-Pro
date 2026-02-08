@@ -1,0 +1,152 @@
+/* ═══════════ Mobile Assets ═══════════ */
+.ma-page {
+  --buy: #00f0ff;
+  --bg: #0a0a12;
+  --surface: #0d0e0f;
+  --surface2: #131720;
+  --border: #1e2028;
+  --text: #e6edf3;
+  --text3: #8b949e;
+  min-height: 60vh;
+  padding: 16px;
+  padding-bottom: 80px;
+}
+
+/* ── 资产概览 ── */
+.ma-overview {
+  padding: 24px 20px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(0,240,255,0.08), rgba(0,240,255,0.02));
+  border: 1px solid rgba(0,240,255,0.15);
+  margin-bottom: 16px;
+}
+.ma-overview-label { font-size: 12px; color: var(--text3); margin-bottom: 8px; }
+.ma-overview-val { font-size: 32px; font-weight: 700; font-family: monospace; color: var(--text); letter-spacing: -0.5px; }
+.ma-overview-addr { font-size: 12px; color: var(--text3); margin-top: 8px; font-family: monospace; }
+.ma-connect-inline {
+  margin-top: 12px; padding: 8px 24px; border-radius: 20px;
+  background: var(--buy); color: #000; font-size: 13px; font-weight: 600;
+  border: none; cursor: pointer;
+}
+
+/* ── 操作按钮 ── */
+.ma-actions {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 10px; margin-bottom: 20px;
+}
+.ma-action-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 16px 0; border-radius: 14px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: all 0.15s;
+}
+.ma-action-btn:active { border-color: var(--buy); color: var(--buy); }
+
+/* ── Asset Header ── */
+.ma-asset-header {
+  display: flex; justify-content: space-between; padding: 0 16px 8px;
+  font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px;
+}
+.ma-section-title {
+  font-size: 15px; font-weight: 700; margin: 20px 0 10px; padding: 0 4px;
+}
+
+/* ── 账户/资产列表 ── */
+.ma-accounts { display: flex; flex-direction: column; gap: 8px; }
+.ma-account-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; border-radius: 14px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.ma-acc-left { display: flex; align-items: center; gap: 10px; }
+.ma-acc-icon { font-size: 20px; min-width: 28px; text-align: center; }
+.ma-acc-name { font-size: 14px; font-weight: 600; display: block; }
+.ma-acc-sub { font-size: 11px; color: var(--text3); display: block; }
+.ma-acc-right { text-align: right; }
+.ma-acc-val { font-size: 14px; font-family: monospace; font-weight: 500; display: block; }
+.ma-acc-usd { font-size: 11px; color: var(--text3); font-family: monospace; display: block; }
+
+/* ── Dialog ── */
+.ma-dialog-mask {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,.6); backdrop-filter: blur(4px);
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.ma-dialog {
+  width: 100%; max-width: 500px; max-height: 85vh;
+  background: var(--surface); border-radius: 20px 20px 0 0;
+  overflow-y: auto; animation: maSlideUp .25s ease-out;
+}
+@keyframes maSlideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.ma-dialog-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 20px; border-bottom: 1px solid var(--border);
+}
+.ma-dialog-title { font-size: 17px; font-weight: 700; }
+.ma-dialog-close { background: none; border: none; color: var(--text3); font-size: 18px; cursor: pointer; padding: 4px 8px; }
+.ma-dialog-body { padding: 20px; }
+.ma-field-label { display: block; font-size: 12px; color: var(--text3); margin: 14px 0 8px; }
+.ma-field-label:first-child { margin-top: 0; }
+
+.ma-coin-select { display: flex; gap: 8px; }
+.ma-coin-opt {
+  flex: 1; padding: 10px; border-radius: 10px; text-align: center;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+}
+.ma-coin-active { border-color: var(--buy); color: var(--buy); background: rgba(0,240,255,.06); }
+
+.ma-network-box { display: flex; gap: 8px; }
+.ma-network-tag {
+  flex: 1; padding: 8px; border-radius: 8px; text-align: center;
+  font-size: 12px; font-weight: 500;
+  background: var(--surface2); border: 1px solid var(--border); color: var(--text3);
+}
+.ma-network-active { border-color: var(--buy); color: var(--buy); }
+
+.ma-addr-box {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px; border-radius: 10px;
+  background: var(--surface2); border: 1px solid var(--border);
+}
+.ma-addr-text { flex: 1; font-size: 12px; font-family: monospace; color: var(--text); word-break: break-all; }
+.ma-copy-btn {
+  padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600;
+  background: var(--buy); color: #000; border: none; cursor: pointer; white-space: nowrap;
+}
+
+.ma-qr-placeholder {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 24px; margin-top: 16px;
+}
+.ma-qr-fake {
+  width: 140px; height: 140px; border-radius: 12px;
+  background: repeating-conic-gradient(var(--text) 0% 25%, var(--surface2) 0% 50%) 0 0 / 14px 14px;
+  opacity: .3;
+}
+.ma-qr-hint { font-size: 12px; color: var(--text3); }
+
+.ma-input {
+  width: 100%; padding: 12px 14px; border-radius: 10px;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text); font-size: 14px; outline: none;
+  transition: border-color .2s; box-sizing: border-box;
+}
+.ma-input:focus { border-color: var(--buy); }
+.ma-input::placeholder { color: var(--text3); }
+.ma-fee-row {
+  display: flex; justify-content: space-between; padding: 12px 0;
+  font-size: 13px; color: var(--text3);
+}
+.ma-result {
+  padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-top: 8px;
+}
+.ma-result-ok { background: rgba(0,212,170,.15); color: #00d4aa; }
+.ma-result-err { background: rgba(255,73,118,.15); color: #ff4976; }
+.ma-submit-btn {
+  display: block; width: 100%; padding: 14px; margin-top: 8px;
+  border-radius: 12px; border: none; font-size: 15px; font-weight: 700;
+  background: var(--buy); color: #000; cursor: pointer;
+}
+.ma-submit-btn:disabled { opacity: .5; cursor: not-allowed; }

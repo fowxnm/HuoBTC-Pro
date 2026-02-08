@@ -1,0 +1,136 @@
+/* ═══════════ PC AI Quant Page ═══════════ */
+.ai-page {
+  --buy: #00f0ff; --sell: #ff4834;
+  --bg: #0a0a12; --surface: #0d0e0f; --surface2: #131720;
+  --border: #1e2028; --text: #e6edf3; --text2: #cbd9da; --text3: #8b949e;
+  --accent: #00f0ff;
+  background: var(--bg); color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── Hero ── */
+.ai-hero {
+  position: relative; padding: 80px 0 60px; text-align: center;
+  background: radial-gradient(ellipse at 30% 0%, rgba(0,240,255,.1) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 100%, rgba(0,240,255,.06) 0%, transparent 50%);
+  overflow: hidden;
+}
+.ai-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0,240,255,.02) 40px, rgba(0,240,255,.02) 41px),
+              repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,240,255,.02) 40px, rgba(0,240,255,.02) 41px);
+}
+.ai-hero-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; padding: 0 24px; }
+.ai-hero h1 { font-size: 48px; font-weight: 800; margin: 0 0 16px; }
+.ai-hero .ai-glow { color: var(--accent); text-shadow: 0 0 30px rgba(0,240,255,.5); }
+.ai-hero p { font-size: 18px; color: var(--text2); margin: 0 0 36px; line-height: 1.6; }
+.ai-hero-metrics {
+  display: flex; justify-content: center; gap: 48px;
+}
+.ai-metric { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.ai-metric-num { font-size: 32px; font-weight: 800; }
+.ai-metric-num.green { color: var(--buy); }
+.ai-metric-label { font-size: 13px; color: var(--text3); }
+
+/* ── Section ── */
+.ai-section { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
+.ai-section-title { font-size: 32px; font-weight: 800; margin: 0 0 12px; text-align: center; }
+.ai-section-sub { font-size: 15px; color: var(--text3); text-align: center; margin: 0 0 36px; }
+
+/* ── Strategy Cards ── */
+.ai-strat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.ai-strat-card {
+  position: relative; border-radius: 20px; padding: 28px; overflow: hidden;
+  background: var(--surface2); border: 1px solid var(--border);
+  transition: transform .3s, border-color .3s, box-shadow .3s;
+}
+.ai-strat-card:hover {
+  transform: translateY(-6px); border-color: var(--accent);
+  box-shadow: 0 16px 48px rgba(0,240,255,.1);
+}
+.ai-strat-badge {
+  display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 6px; margin-bottom: 14px;
+}
+.ai-badge-hot { background: rgba(255,72,52,.12); color: var(--sell); border: 1px solid rgba(255,72,52,.25); }
+.ai-badge-stable { background: rgba(0,240,255,.08); color: var(--buy); border: 1px solid rgba(0,240,255,.2); }
+.ai-badge-new { background: rgba(168,85,247,.1); color: #a855f7; border: 1px solid rgba(168,85,247,.25); }
+.ai-strat-pair { font-size: 20px; font-weight: 700; margin: 0 0 16px; display: flex; align-items: center; gap: 10px; }
+.ai-strat-pair img { width: 28px; height: 28px; border-radius: 50%; }
+.ai-strat-chart {
+  width: 100%; height: 80px; margin-bottom: 16px; border-radius: 8px;
+  background: rgba(0,240,255,.03); overflow: hidden;
+}
+.ai-strat-chart svg { width: 100%; height: 100%; }
+.ai-strat-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.ai-strat-stat { display: flex; flex-direction: column; gap: 2px; }
+.ai-strat-stat-label { font-size: 11px; color: var(--text3); }
+.ai-strat-stat-val { font-size: 16px; font-weight: 700; }
+.ai-strat-stat-val.green { color: var(--buy); }
+.ai-strat-btn {
+  display: block; width: 100%; margin-top: 20px; padding: 12px;
+  border-radius: 12px; border: none; font-size: 14px; font-weight: 700;
+  background: linear-gradient(135deg, rgba(0,240,255,.15), rgba(0,240,255,.05));
+  color: var(--accent); cursor: pointer; transition: background .2s;
+  border: 1px solid rgba(0,240,255,.2);
+}
+.ai-strat-btn:hover { background: linear-gradient(135deg, rgba(0,240,255,.25), rgba(0,240,255,.1)); }
+
+/* ── Performance Dashboard ── */
+.ai-perf-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.ai-perf-card {
+  padding: 24px; border-radius: 16px; text-align: center;
+  background: var(--surface2); border: 1px solid var(--border);
+}
+.ai-perf-icon { font-size: 32px; margin-bottom: 12px; }
+.ai-perf-num { font-size: 28px; font-weight: 800; color: var(--buy); }
+.ai-perf-label { font-size: 13px; color: var(--text3); margin-top: 4px; }
+
+/* ── Leaderboard ── */
+.ai-leader-table {
+  width: 100%; border-collapse: collapse;
+  background: var(--surface2); border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--border);
+}
+.ai-leader-table th {
+  padding: 14px 20px; text-align: left; font-size: 12px;
+  font-weight: 600; color: var(--text3); text-transform: uppercase;
+  background: rgba(0,0,0,.3); border-bottom: 1px solid var(--border);
+}
+.ai-leader-table td {
+  padding: 14px 20px; font-size: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.ai-leader-table tr:last-child td { border-bottom: none; }
+.ai-leader-table tr:hover td { background: rgba(0,240,255,.02); }
+.ai-leader-name { display: flex; align-items: center; gap: 10px; }
+.ai-leader-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+.ai-leader-pnl { font-weight: 700; }
+.ai-leader-pnl.up { color: var(--buy); }
+.ai-leader-pnl.down { color: var(--sell); }
+
+/* ── How It Works ── */
+.ai-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.ai-step {
+  text-align: center; padding: 32px 20px; border-radius: 16px;
+  background: var(--surface2); border: 1px solid var(--border);
+  transition: border-color .2s;
+}
+.ai-step:hover { border-color: var(--accent); }
+.ai-step-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(0,240,255,.08); border: 2px solid var(--accent);
+  font-size: 20px; font-weight: 800; color: var(--accent);
+  margin-bottom: 16px;
+}
+.ai-step-title { font-size: 16px; font-weight: 700; margin: 0 0 8px; }
+.ai-step-desc { font-size: 13px; color: var(--text3); line-height: 1.5; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .ai-strat-grid { grid-template-columns: 1fr; }
+  .ai-perf-grid { grid-template-columns: repeat(2, 1fr); }
+  .ai-steps { grid-template-columns: repeat(2, 1fr); }
+  .ai-hero h1 { font-size: 32px; }
+}

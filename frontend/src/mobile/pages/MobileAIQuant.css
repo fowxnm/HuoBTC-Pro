@@ -1,0 +1,108 @@
+/* ═══════════ Mobile AI Quant Page ═══════════ */
+.mai {
+  --buy: #00f0ff; --sell: #ff4834;
+  --bg: #0a0a12; --surface: #0d0e0f; --surface2: #131720;
+  --border: #1e2028; --text: #e6edf3; --text2: #cbd9da; --text3: #8b949e;
+  --accent: #00f0ff;
+  color: var(--text); padding-bottom: 80px;
+}
+.mai-glow { color: var(--accent); text-shadow: 0 0 16px rgba(0,240,255,.4); }
+
+/* Hero */
+.mai-hero {
+  position: relative; padding: 40px 16px 32px; text-align: center;
+  background: radial-gradient(ellipse at 50% 0%, rgba(0,240,255,.08) 0%, transparent 60%);
+  overflow: hidden;
+}
+.mai-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(0,240,255,.015) 30px, rgba(0,240,255,.015) 31px),
+              repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(0,240,255,.015) 30px, rgba(0,240,255,.015) 31px);
+}
+.mai-hero-inner { position: relative; z-index: 1; }
+.mai-hero h1 { font-size: 24px; font-weight: 800; margin: 0 0 10px; }
+.mai-hero p { font-size: 13px; color: var(--text2); margin: 0 0 20px; line-height: 1.5; }
+.mai-hero-metrics { display: flex; justify-content: center; gap: 0; }
+.mai-metric { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.mai-metric-num { font-size: 18px; font-weight: 800; }
+.mai-metric-num.green { color: var(--buy); }
+.mai-metric-label { font-size: 10px; color: var(--text3); }
+
+/* Section */
+.mai-sec { padding: 20px 12px; }
+.mai-sec-title { font-size: 17px; font-weight: 700; margin: 0 0 10px; }
+.mai-sec-sub { font-size: 12px; color: var(--text3); margin: 0 0 14px; }
+.mai-sec-dark { background: rgba(0,0,0,.2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+/* Steps */
+.mai-steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.mai-step {
+  text-align: center; padding: 16px 10px; border-radius: 12px;
+  background: var(--surface2); border: 1px solid var(--border);
+}
+.mai-step-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(0,240,255,.08); border: 2px solid var(--accent);
+  font-size: 14px; font-weight: 800; color: var(--accent); margin-bottom: 8px;
+}
+.mai-step-title { font-size: 13px; font-weight: 700; margin: 0 0 4px; }
+.mai-step-desc { font-size: 11px; color: var(--text3); line-height: 1.4; }
+
+/* Strategy Cards */
+.mai-strat-list { display: flex; flex-direction: column; gap: 12px; }
+.mai-strat-card {
+  padding: 16px; border-radius: 14px;
+  background: var(--surface2); border: 1px solid var(--border);
+}
+.mai-strat-badge {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 4px; margin-bottom: 10px;
+}
+.mai-badge-hot { background: rgba(255,72,52,.1); color: var(--sell); border: 1px solid rgba(255,72,52,.2); }
+.mai-badge-stable { background: rgba(0,240,255,.08); color: var(--buy); border: 1px solid rgba(0,240,255,.2); }
+.mai-badge-new { background: rgba(168,85,247,.1); color: #a855f7; border: 1px solid rgba(168,85,247,.2); }
+.mai-strat-pair { font-size: 16px; font-weight: 700; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+.mai-strat-pair img { width: 22px; height: 22px; border-radius: 50%; }
+.mai-strat-chart {
+  width: 100%; height: 50px; margin-bottom: 12px; border-radius: 6px;
+  background: rgba(0,240,255,.02); overflow: hidden;
+}
+.mai-strat-chart svg { width: 100%; height: 100%; }
+.mai-strat-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.mai-ss { display: flex; flex-direction: column; gap: 1px; }
+.mai-ss-label { font-size: 10px; color: var(--text3); }
+.mai-ss-val { font-size: 14px; font-weight: 700; }
+.mai-ss-val.green { color: var(--buy); }
+.mai-strat-btn {
+  display: block; width: 100%; padding: 10px; border-radius: 10px;
+  border: 1px solid rgba(0,240,255,.2); background: rgba(0,240,255,.06);
+  color: var(--accent); font-size: 13px; font-weight: 600; cursor: pointer;
+  text-align: center;
+}
+
+/* Perf Cards */
+.mai-perf-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.mai-perf-card {
+  padding: 16px; border-radius: 12px; text-align: center;
+  background: var(--surface2); border: 1px solid var(--border);
+}
+.mai-perf-icon { font-size: 24px; margin-bottom: 6px; }
+.mai-perf-num { font-size: 20px; font-weight: 800; color: var(--buy); }
+.mai-perf-label { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+/* Leaderboard */
+.mai-leaders { display: flex; flex-direction: column; gap: 8px; }
+.mai-leader {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px; border-radius: 12px;
+  background: var(--surface2); border: 1px solid var(--border);
+}
+.mai-leader-rank { font-size: 14px; font-weight: 800; color: var(--accent); min-width: 24px; }
+.mai-leader-av { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+.mai-leader-info { flex: 1; min-width: 0; }
+.mai-leader-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mai-leader-strat { font-size: 11px; color: var(--text3); }
+.mai-leader-pnl { font-size: 13px; font-weight: 700; }
+.mai-leader-up { color: var(--buy); }
+.mai-leader-down { color: var(--sell); }

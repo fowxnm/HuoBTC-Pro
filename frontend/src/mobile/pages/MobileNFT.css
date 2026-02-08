@@ -1,0 +1,93 @@
+/* ═══════════ Mobile NFT Page ═══════════ */
+.mnft {
+  --buy: #00f0ff; --sell: #ff4834;
+  --bg: #0a0a12; --surface: #0d0e0f; --surface2: #131720;
+  --border: #1e2028; --text: #e6edf3; --text2: #cbd9da; --text3: #8b949e;
+  --accent: #a855f7;
+  color: var(--text); padding-bottom: 80px;
+}
+.mnft-glow { color: var(--accent); text-shadow: 0 0 16px rgba(168,85,247,.4); }
+.mnft-cyan { color: var(--buy); text-shadow: 0 0 16px rgba(0,240,255,.4); }
+
+/* Hero */
+.mnft-hero {
+  position: relative; padding: 40px 16px 32px; text-align: center;
+  background: radial-gradient(ellipse at 50% 0%, rgba(168,85,247,.1) 0%, transparent 60%);
+}
+.mnft-hero h1 { font-size: 24px; font-weight: 800; margin: 0 0 10px; }
+.mnft-hero p { font-size: 13px; color: var(--text2); margin: 0 0 20px; line-height: 1.5; }
+.mnft-hero-stats { display: flex; justify-content: center; gap: 0; }
+.mnft-hero-stat { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.mnft-hero-stat-num { font-size: 18px; font-weight: 800; }
+.mnft-hero-stat-label { font-size: 10px; color: var(--text3); }
+
+/* Section */
+.mnft-sec { padding: 20px 12px; }
+.mnft-sec-title { font-size: 17px; font-weight: 700; margin: 0 0 14px; }
+
+/* Featured */
+.mnft-featured { display: flex; flex-direction: column; gap: 14px; }
+.mnft-fc {
+  position: relative; border-radius: 14px; overflow: hidden;
+  background: var(--surface2); border: 1px solid var(--border);
+}
+.mnft-fc-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+.mnft-fc-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 14px;
+  background: linear-gradient(transparent, rgba(0,0,0,.85));
+}
+.mnft-fc-name { font-size: 15px; font-weight: 700; }
+.mnft-fc-artist { font-size: 11px; color: var(--text3); }
+.mnft-fc-price {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(0,0,0,.7); backdrop-filter: blur(6px);
+  border: 1px solid rgba(168,85,247,.3); border-radius: 8px;
+  padding: 4px 10px; font-size: 12px; font-weight: 700; color: var(--accent);
+}
+
+/* Gallery Grid */
+.mnft-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.mnft-card {
+  border-radius: 12px; overflow: hidden;
+  background: var(--surface2); border: 1px solid var(--border);
+}
+.mnft-card-img-wrap { aspect-ratio: 1; overflow: hidden; }
+.mnft-card-img { width: 100%; height: 100%; object-fit: cover; }
+.mnft-card-info { padding: 10px; }
+.mnft-card-name { font-size: 12px; font-weight: 700; margin: 0 0 4px; }
+.mnft-card-row { display: flex; justify-content: space-between; }
+.mnft-card-price { font-size: 11px; font-weight: 700; color: var(--accent); }
+.mnft-card-bid { font-size: 10px; color: var(--text3); }
+
+/* Auctions */
+.mnft-auctions { display: flex; flex-direction: column; gap: 12px; }
+.mnft-auc {
+  display: flex; gap: 12px; padding: 12px; border-radius: 12px;
+  background: var(--surface2); border: 1px solid var(--border);
+}
+.mnft-auc-img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; }
+.mnft-auc-body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+.mnft-auc-name { font-size: 14px; font-weight: 700; }
+.mnft-auc-price { font-size: 13px; font-weight: 700; color: var(--buy); }
+.mnft-auc-timer {
+  display: inline-flex; width: fit-content; align-items: center; gap: 4px;
+  font-size: 11px; color: var(--sell); font-weight: 600;
+  background: rgba(255,72,52,.08); border: 1px solid rgba(255,72,52,.2);
+  border-radius: 4px; padding: 2px 8px;
+}
+
+/* Rankings */
+.mnft-ranks { display: flex; flex-direction: column; gap: 8px; }
+.mnft-rank {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px; border-radius: 12px;
+  background: var(--surface2); border: 1px solid var(--border);
+}
+.mnft-rank-num { font-size: 16px; font-weight: 800; color: var(--accent); min-width: 28px; }
+.mnft-rank-av { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.mnft-rank-info { flex: 1; }
+.mnft-rank-name { font-size: 13px; font-weight: 600; }
+.mnft-rank-vol { font-size: 11px; color: var(--text3); }
+.mnft-rank-chg { font-size: 13px; font-weight: 700; }
+.mnft-rank-up { color: var(--buy); }
+.mnft-rank-down { color: var(--sell); }

@@ -1,0 +1,249 @@
+/* ═══════════ PC Trade Page ═══════════ */
+.trade-page {
+  --buy: #00f0ff; --sell: #ff4834;
+  --bg: #0a0a12; --surface: #0d0e0f; --surface2: #161b22;
+  --border: #1e2028; --border2: #2c2c3e;
+  --text: #e6edf3; --text2: #cbd9da; --text3: #8b949e;
+  background: var(--bg); color: var(--text); min-height: 100vh;
+}
+.text-buy { color: var(--buy); }
+.text-sell { color: var(--sell); }
+
+/* ── Tab 栏 ── */
+.trade-tabs {
+  position: sticky; top: 56px; z-index: 30;
+  background: var(--surface); border-bottom: 1px solid var(--border);
+}
+.trade-tabs-inner {
+  max-width: 1400px; margin: 0 auto;
+  display: flex; align-items: center; gap: 0; padding: 0 24px;
+}
+.trade-tab {
+  position: relative; display: flex; align-items: center; gap: 6px;
+  padding: 14px 24px; font-size: 15px; font-weight: 500;
+  color: var(--text3); border: none; background: none; cursor: pointer;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.trade-tab:hover { color: var(--text2); }
+.trade-tab-active { color: var(--buy) !important; font-weight: 600; }
+.trade-tab-icon { font-size: 16px; }
+.trade-tab-line {
+  position: absolute; bottom: 0; left: 24px; right: 24px; height: 2px;
+  background: var(--buy); border-radius: 2px;
+  animation: slideUp 0.2s ease;
+}
+
+/* ── Body 布局 ── */
+.trade-body {
+  max-width: 1400px; margin: 0 auto; padding: 24px;
+  display: grid; grid-template-columns: 1fr 380px; gap: 24px;
+  min-height: calc(100vh - 120px);
+}
+.trade-left { display: flex; flex-direction: column; gap: 16px; }
+.trade-right { position: sticky; top: 120px; align-self: start; }
+
+/* ── 币对栏 ── */
+.trade-pair-bar {
+  display: flex; align-items: center; gap: 24px;
+  padding: 20px 24px; border-radius: 16px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.trade-pair-select {
+  font-size: 18px; font-weight: 700; color: var(--text);
+  background: transparent; border: none; cursor: pointer;
+  padding: 4px 8px 4px 0;
+}
+.trade-pair-select option { background: var(--surface); color: var(--text); }
+/* ── K线图区域 ── */
+.trade-chart-wrap {
+  border-radius: 16px; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.trade-interval-bar {
+  display: flex; align-items: center; gap: 2px;
+  padding: 8px 12px; border-bottom: 1px solid var(--border);
+}
+.trade-intv-btn {
+  padding: 4px 12px; font-size: 12px; font-weight: 500;
+  color: var(--text3); border: none; background: none; cursor: pointer;
+  border-radius: 6px; transition: all 0.15s;
+}
+.trade-intv-btn:hover { color: var(--text); background: var(--surface2); }
+.trade-intv-active {
+  color: var(--buy) !important; background: rgba(0,240,255,0.08) !important;
+  font-weight: 600;
+}
+
+.trade-price-box { display: flex; flex-direction: column; margin-left: auto; text-align: right; }
+.trade-live-price {
+  font-size: 28px; font-weight: 700; font-family: "SF Mono", "Consolas", monospace;
+  letter-spacing: -0.5px; transition: color 0.15s;
+}
+.trade-price-label { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+/* ── 通用卡片 ── */
+.trade-card {
+  padding: 20px 24px; border-radius: 16px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.trade-card-title {
+  font-size: 13px; color: var(--text3); margin-bottom: 14px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+/* ── 杠杆按钮 ── */
+.leverage-grid { display: flex; gap: 8px; flex-wrap: wrap; }
+.lev-btn {
+  flex: 1; min-width: 60px; padding: 10px 0; border-radius: 10px;
+  font-size: 14px; font-weight: 600; border: 1px solid var(--border2);
+  background: var(--bg); color: var(--text3); cursor: pointer;
+  transition: all 0.15s;
+}
+.lev-btn:hover { border-color: var(--buy); color: var(--text); }
+.lev-btn-active {
+  background: rgba(0,240,255,0.1) !important; border-color: var(--buy) !important;
+  color: var(--buy) !important; box-shadow: 0 0 12px rgba(0,240,255,0.15);
+}
+
+/* ── 秒合约 ── */
+.binary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.bin-btn {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 14px 0; border-radius: 12px; border: 1px solid var(--border2);
+  background: var(--bg); color: var(--text3); cursor: pointer; transition: all 0.15s;
+}
+.bin-btn:hover { border-color: var(--buy); }
+.bin-btn-active {
+  background: rgba(0,240,255,0.1) !important; border-color: var(--buy) !important;
+  color: var(--buy) !important;
+}
+.bin-sec { font-size: 22px; font-weight: 700; line-height: 1; }
+.bin-unit { font-size: 12px; margin-top: 4px; }
+
+/* ── 下单面板 ── */
+.order-panel {
+  padding: 24px; border-radius: 16px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+
+.dir-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+.dir-btn {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 14px 0; border-radius: 12px; font-size: 15px; font-weight: 600;
+  border: 1px solid var(--border2); background: var(--bg); color: var(--text3);
+  cursor: pointer; transition: all 0.2s;
+}
+.dir-arrow { font-size: 12px; }
+.dir-long.dir-active {
+  background: var(--buy); color: #000; border-color: var(--buy);
+  box-shadow: 0 0 20px rgba(0,240,255,0.25);
+}
+.dir-short.dir-active {
+  background: var(--sell); color: #fff; border-color: var(--sell);
+  box-shadow: 0 0 20px rgba(255,72,52,0.25);
+}
+
+/* ── 输入 ── */
+.order-field { margin-bottom: 16px; }
+.order-field label { display: block; font-size: 13px; color: var(--text3); margin-bottom: 8px; }
+.order-input-wrap {
+  display: flex; align-items: center; border-radius: 12px;
+  background: var(--bg); border: 1px solid var(--border2);
+  transition: border-color 0.2s;
+}
+.order-input-wrap:focus-within { border-color: var(--buy); }
+.order-input {
+  flex: 1; padding: 14px 16px; border: none; background: transparent;
+  color: var(--text); font-size: 18px; font-family: monospace; outline: none;
+}
+.order-unit {
+  padding: 0 16px; font-size: 13px; color: var(--text3); font-weight: 500;
+}
+
+/* ── 快捷金额 ── */
+.quick-amounts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 20px; }
+.quick-btn {
+  padding: 8px 0; border-radius: 8px; font-size: 13px; font-weight: 500;
+  border: 1px solid var(--border2); background: var(--bg); color: var(--text3);
+  cursor: pointer; transition: all 0.15s;
+}
+.quick-btn:hover { border-color: var(--buy); color: var(--buy); }
+
+/* ── 提交 ── */
+.submit-btn {
+  width: 100%; padding: 16px 0; border-radius: 12px;
+  font-size: 16px; font-weight: 700; border: none; cursor: pointer;
+  transition: all 0.2s; letter-spacing: 0.5px;
+}
+.submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.submit-long { background: var(--buy); color: #000; box-shadow: 0 4px 20px rgba(0,240,255,0.2); }
+.submit-long:hover:not(:disabled) { box-shadow: 0 4px 30px rgba(0,240,255,0.35); }
+.submit-short { background: var(--sell); color: #fff; box-shadow: 0 4px 20px rgba(255,72,52,0.2); }
+.submit-short:hover:not(:disabled) { box-shadow: 0 4px 30px rgba(255,72,52,0.35); }
+
+/* ── 余额 ── */
+.order-balance {
+  display: flex; justify-content: space-between; margin-top: 16px;
+  font-size: 13px; color: var(--text3);
+}
+
+/* ── 成交结果 ── */
+.trade-result {
+  padding: 16px 20px; border-radius: 12px;
+  background: rgba(0,240,255,0.04); border: 1px solid rgba(0,240,255,0.2);
+  animation: slideUp 0.3s ease;
+}
+.trade-result-head { font-size: 14px; font-weight: 600; color: var(--buy); margin-bottom: 10px; }
+.trade-result-row {
+  display: flex; justify-content: space-between; font-size: 13px;
+  padding: 4px 0; color: var(--text3);
+}
+.trade-result-row .mono { font-family: monospace; color: var(--text2); }
+
+/* ── 秒合约: Call/Put 大按钮 ── */
+.binary-call-put {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;
+}
+.call-btn, .put-btn {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; padding: 24px 0; border-radius: 16px; font-weight: 700;
+  border: none; cursor: pointer; transition: all 0.2s;
+}
+.call-btn:disabled, .put-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.call-btn {
+  background: linear-gradient(135deg, #00f0ff 0%, #00b8d4 100%); color: #000;
+  box-shadow: 0 6px 24px rgba(0,240,255,0.25);
+}
+.call-btn:hover:not(:disabled) { box-shadow: 0 6px 32px rgba(0,240,255,0.4); transform: translateY(-1px); }
+.put-btn {
+  background: linear-gradient(135deg, #ff4834 0%, #d32f2f 100%); color: #fff;
+  box-shadow: 0 6px 24px rgba(255,72,52,0.25);
+}
+.put-btn:hover:not(:disabled) { box-shadow: 0 6px 32px rgba(255,72,52,0.4); transform: translateY(-1px); }
+.call-label, .put-label { font-size: 20px; line-height: 1; }
+.call-sub, .put-sub { font-size: 12px; opacity: 0.7; font-weight: 500; }
+
+/* ── 倒计时环形 ── */
+.countdown-card {
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  padding: 24px; border-radius: 16px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.countdown-ring {
+  position: relative; width: 120px; height: 120px;
+}
+.countdown-ring svg { width: 100%; height: 100%; }
+.countdown-text {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.countdown-num { font-size: 36px; font-weight: 700; font-family: monospace; color: var(--buy); line-height: 1; }
+.countdown-unit { font-size: 13px; color: var(--text3); }
+.countdown-label { font-size: 13px; color: var(--text3); }
+
+/* ── 响应式（PC 内部宽度） ── */
+@media (max-width: 1024px) {
+  .trade-body { grid-template-columns: 1fr; }
+  .trade-right { position: static; }
+}

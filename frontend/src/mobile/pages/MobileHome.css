@@ -1,0 +1,326 @@
+/* ═══════════ Mobile Home ═══════════ */
+.mh {
+  --buy: #00f0ff; --sell: #ff4834;
+  --bg: #0a0a12; --surface: #0d0e0f; --surface2: #131720;
+  --border: #1e2028; --text: #e6edf3; --text2: #cbd9da; --text3: #8b949e;
+  color: var(--text);
+}
+.mh-glow { color: var(--buy); text-shadow: 0 0 16px rgba(0,240,255,.4); }
+.tk-up { color: var(--buy) !important; }
+.tk-down { color: var(--sell) !important; }
+
+/* ═══════ HERO ═══════ */
+.mh-hero {
+  position: relative;
+  width: 100%;
+  height: 48vh;
+  min-height: 280px;
+  max-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 视频背景（复刻Vue） */
+.mh-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* 浮动币图（复刻Vue） */
+.mh-float-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.mh-float { position: absolute; }
+.mh-float img { width: 40px; height: 40px; display: block; }
+.mh-float:nth-child(2) img,
+.mh-float:nth-child(5) img { width: 80px; height: 80px; }
+
+.mh-ball1 { left: 14%; top: 10%; animation: mhFloat1 2s infinite; }
+.mh-ball2 { left: 5%;  top: 25%; animation: mhFloat2 2s infinite; }
+.mh-ball3 { left: 14%; top: 50%; animation: mhFloat1 2s infinite; }
+.mh-ball4 { left: 76%; top: 10%; animation: mhFloat2 2s infinite; }
+.mh-ball5 { left: 75%; top: 25%; animation: mhFloat1 2s infinite; }
+.mh-ball6 { left: 76%; top: 50%; animation: mhFloat2 2s infinite; }
+
+@keyframes mhFloat1 {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateY(-16px); }
+  100% { transform: translateX(0); }
+}
+@keyframes mhFloat2 {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateY(16px); }
+  100% { transform: translateX(0); }
+}
+
+/* Hero 文案 */
+.mh-hero-text { position: relative; z-index: 3; text-align: center; padding: 0 24px; }
+.mh-title { font-size: 26px; font-weight: 700; margin: 0 0 6px; }
+.mh-sub { font-size: 13px; color: var(--text2); margin: 0 0 20px; }
+.mh-operate { display: flex; gap: 0; justify-content: center; max-width: 340px; margin: 0 auto; }
+.mh-hero-input {
+  flex: 1; height: 40px; padding: 0 14px;
+  border-radius: 99px 0 0 99px;
+  border: 1px solid rgba(255,255,255,.12); border-right: none;
+  background: rgba(255,255,255,.06); backdrop-filter: blur(6px);
+  color: #fff; font-size: 13px; outline: none;
+  transition: border-color .2s;
+}
+.mh-hero-input::placeholder { color: var(--text3); }
+.mh-hero-input:focus { border-color: var(--accent); }
+.mh-btn-pri {
+  min-width: 90px; height: 40px; border-radius: 0 99px 99px 0;
+  font-size: 14px; font-weight: 600; border: none;
+  background: var(--buy); color: #000; cursor: pointer;
+  box-shadow: 0 0 16px rgba(0,240,255,.25); padding: 0 18px;
+}
+.mh-btn-pri:active { opacity: .85; }
+
+/* ═══════ Stats Pill ═══════ */
+.mh-stats {
+  display: flex; align-items: center; justify-content: center; gap: 0;
+  margin-top: 16px; padding: 10px 16px;
+  background: rgba(0,0,0,.45); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.08); border-radius: 14px;
+}
+.mh-stat { display: flex; flex-direction: column; align-items: center; gap: 2px; flex: 1; }
+.mh-stat-num { font-size: 16px; font-weight: 700; color: #fff; }
+.mh-stat-label { font-size: 10px; color: var(--text3); }
+.mh-stat-divider { width: 1px; height: 28px; background: rgba(255,255,255,.1); }
+
+/* ═══════ Ticker Bar ═══════ */
+.mh-ticker {
+  overflow: hidden; padding: 10px 0;
+  background: rgba(0,0,0,.3); border-bottom: 1px solid var(--border);
+}
+.mh-ticker-track {
+  display: flex; gap: 24px; white-space: nowrap;
+  animation: mhTickerScroll 25s linear infinite;
+}
+.mh-ticker-item { display: inline-flex; align-items: center; gap: 6px; }
+.mh-ticker-sym { font-size: 12px; font-weight: 600; color: var(--text2); }
+.mh-ticker-price { font-size: 12px; font-family: "SF Mono", Consolas, monospace; color: var(--text3); }
+@keyframes mhTickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
+
+/* ═══════ 金刚区 — 卡片式容器 ═══════ */
+.mh-grid-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 0;
+  padding: 20px 8px;
+  margin: 16px 12px 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.mh-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mh-grid-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .15s, background .15s;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.mh-grid-item:active .mh-grid-icon {
+  transform: scale(.9);
+  background: rgba(0,240,255,.1);
+  border-color: rgba(0,240,255,.2);
+}
+
+.mh-grid-icon svg {
+  color: var(--buy);
+  stroke: var(--buy);
+}
+
+.mh-grid-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text2);
+  line-height: 1;
+}
+
+/* ═══════ 行情区 ═══════ */
+.mh-section {
+  padding: 20px 12px 24px;
+}
+
+.mh-sec-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 14px;
+  padding: 0 4px;
+}
+
+.mh-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mh-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color .15s;
+}
+.mh-list-item:active { border-color: rgba(0,240,255,.25); }
+
+.mh-li-sym { font-size: 15px; font-weight: 600; min-width: 56px; }
+.mh-li-type {
+  font-size: 10px; color: var(--text3);
+  padding: 2px 8px; border-radius: 4px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.06);
+}
+.mh-li-price {
+  margin-left: auto;
+  font-size: 15px;
+  font-family: "SF Mono", Consolas, monospace;
+  font-weight: 500;
+  color: var(--text3);
+  transition: color .15s;
+}
+
+/* ═══════ Market Grid Cards ═══════ */
+.mh-market-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+}
+.mh-market-card {
+  padding: 14px; border-radius: 12px;
+  background: var(--surface); border: 1px solid var(--border);
+  cursor: pointer; transition: border-color .15s;
+}
+.mh-market-card:active { border-color: rgba(0,240,255,.25); }
+.mh-mc-top { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+.mh-mc-sym { font-size: 14px; font-weight: 600; }
+.mh-mc-type { font-size: 10px; color: var(--text3); padding: 1px 6px; border-radius: 4px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); }
+.mh-mc-price { font-size: 16px; font-family: "SF Mono", Consolas, monospace; font-weight: 600; color: var(--text3); transition: color .15s; }
+
+/* ═══════ Ghost Button ═══════ */
+.mh-ghost-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; margin-top: 14px; padding: 12px;
+  border-radius: 12px; font-size: 13px; font-weight: 500;
+  border: 1px solid var(--border); background: transparent;
+  color: var(--text3); cursor: pointer; text-align: center;
+}
+.mh-ghost-btn:active { border-color: var(--buy); color: var(--buy); }
+
+/* ═══════ Section Dark ═══════ */
+.mh-section-dark {
+  background: rgba(0,0,0,.2);
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+
+/* ═══════ AI Section ═══════ */
+.mh-ai-grid { display: flex; flex-direction: column; gap: 10px; }
+.mh-ai-card {
+  padding: 14px; border-radius: 12px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.mh-ai-pair { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+.mh-ai-stats { display: flex; gap: 24px; }
+.mh-ai-stats > div { display: flex; flex-direction: column; gap: 2px; }
+.mh-ai-label { font-size: 11px; color: var(--text3); }
+.mh-ai-val { font-size: 16px; font-weight: 700; }
+
+/* ═══════ NFT Section ═══════ */
+.mh-nft-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.mh-nft-card {
+  border-radius: 12px; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.mh-nft-img-wrap { aspect-ratio: 1; overflow: hidden; }
+.mh-nft-img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+.mh-nft-card:active .mh-nft-img { transform: scale(1.05); }
+.mh-nft-info { padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; }
+.mh-nft-name { font-size: 13px; font-weight: 600; }
+.mh-nft-price { font-size: 12px; color: var(--buy); font-weight: 600; }
+
+/* ═══════ News Section ═══════ */
+.mh-news-grid { display: flex; flex-direction: column; gap: 12px; }
+.mh-news-card {
+  display: flex; gap: 12px; padding: 12px;
+  border-radius: 12px; background: var(--surface);
+  border: 1px solid var(--border); text-decoration: none; color: inherit;
+  transition: border-color .2s;
+}
+.mh-news-card:active { border-color: var(--buy); }
+.mh-news-img-wrap { width: 100px; min-width: 100px; height: 72px; border-radius: 8px; overflow: hidden; background: #111; }
+.mh-news-img { width: 100%; height: 100%; object-fit: cover; }
+.mh-news-body { flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.mh-news-tag {
+  display: inline-block; width: fit-content;
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  color: var(--buy); background: rgba(0,240,255,.08);
+  border: 1px solid rgba(0,240,255,.2); border-radius: 3px; padding: 1px 6px;
+}
+.mh-news-title {
+  font-size: 13px; font-weight: 600; line-height: 1.3; margin: 0;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.mh-news-date { font-size: 11px; color: var(--text3); opacity: .7; margin-top: auto; }
+
+/* ═══════ FAQ Section ═══════ */
+.mh-faq-list { display: flex; flex-direction: column; gap: 8px; }
+.mh-faq-item {
+  border-radius: 12px; background: var(--surface);
+  border: 1px solid var(--border); overflow: hidden; cursor: pointer;
+}
+.mh-faq-q {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 16px; font-size: 14px; font-weight: 600;
+}
+.mh-faq-icon { font-size: 18px; color: var(--buy); font-weight: 700; }
+.mh-faq-a {
+  max-height: 0; overflow: hidden; padding: 0 16px;
+  font-size: 13px; color: var(--text3); line-height: 1.6;
+  transition: max-height .3s, padding .3s;
+}
+.mh-faq-open .mh-faq-a { max-height: 200px; padding: 0 16px 14px; }
+
+/* ═══════ Price flash animation ═══════ */
+@keyframes flashUp {
+  0%   { color: var(--buy); text-shadow: 0 0 8px rgba(0,240,255,.6); }
+  100% { text-shadow: none; }
+}
+@keyframes flashDown {
+  0%   { color: var(--sell); text-shadow: 0 0 8px rgba(255,72,52,.6); }
+  100% { text-shadow: none; }
+}
+.tk-flash-up   { animation: flashUp   .6s ease-out; }
+.tk-flash-down  { animation: flashDown  .6s ease-out; }

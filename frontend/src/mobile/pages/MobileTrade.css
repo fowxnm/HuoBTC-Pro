@@ -1,0 +1,189 @@
+/* ═══════════ Mobile Trade ═══════════ */
+.mt-page {
+  --buy: #00f0ff; --sell: #ff4834;
+  --bg: #0a0a12; --surface: #0d0e0f; --surface2: #161b22;
+  --border: #1e2028; --border2: #2c2c3e;
+  --text: #e6edf3; --text3: #8b949e;
+  background: var(--bg); color: var(--text);
+  min-height: 100vh; display: flex; flex-direction: column;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.text-buy { color: var(--buy); }
+.text-sell { color: var(--sell); }
+
+/* ── Tab 栏（吸顶） ── */
+.mt-tabs {
+  position: sticky; top: 48px; z-index: 20;
+  display: flex; background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.mt-tabs::-webkit-scrollbar { display: none; }
+
+.mt-tab {
+  flex: none; position: relative;
+  display: flex; align-items: center; gap: 4px;
+  padding: 12px 18px; font-size: 14px; font-weight: 500;
+  color: var(--text3); background: none; border: none;
+  cursor: pointer; white-space: nowrap; transition: color 0.15s;
+}
+.mt-tab-active { color: var(--buy) !important; font-weight: 600; }
+.mt-tab-line {
+  position: absolute; bottom: 0; left: 18px; right: 18px; height: 2px;
+  background: var(--buy); border-radius: 2px;
+}
+
+/* ── 内容区 ── */
+.mt-body { flex: 1; padding: 12px 16px 160px; display: flex; flex-direction: column; gap: 12px; }
+
+/* ── K线周期选择 ── */
+.mt-intv-bar {
+  display: flex; gap: 4px; padding: 8px 0 4px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.mt-intv-btn {
+  padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 500;
+  background: transparent; color: var(--text3); border: 1px solid transparent;
+  white-space: nowrap; cursor: pointer; transition: all .2s;
+}
+.mt-intv-btn:hover { color: var(--text1); }
+.mt-intv-active {
+  background: rgba(0, 240, 255, 0.08); color: var(--accent);
+  border-color: rgba(0, 240, 255, 0.25);
+}
+
+/* ── K线图 ── */
+.mt-chart-wrap {
+  border-radius: 12px; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--border);
+}
+
+/* ── 币对 + 价格 ── */
+.mt-pair-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px; border-radius: 14px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.mt-pair-select {
+  font-size: 16px; font-weight: 700; color: var(--text);
+  background: transparent; border: none; max-width: 120px;
+}
+.mt-pair-select option { background: var(--surface); }
+.mt-live-price {
+  font-size: 24px; font-weight: 700; font-family: monospace;
+  letter-spacing: -0.5px; transition: color 0.15s;
+}
+
+/* ── 条件卡片 ── */
+.mt-card {
+  padding: 14px 16px; border-radius: 14px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.mt-card-title { font-size: 12px; color: var(--text3); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.mt-lev-grid { display: flex; gap: 6px; flex-wrap: wrap; }
+.mt-lev-btn {
+  flex: 1; min-width: 48px; padding: 10px 0; text-align: center;
+  border-radius: 10px; font-size: 13px; font-weight: 600;
+  border: 1px solid var(--border2); background: var(--bg); color: var(--text3);
+  cursor: pointer; transition: all 0.15s;
+}
+.mt-lev-active {
+  background: rgba(0,240,255,0.1) !important; border-color: var(--buy) !important;
+  color: var(--buy) !important;
+}
+
+.mt-bin-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.mt-bin-btn {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 12px 0; border-radius: 10px;
+  border: 1px solid var(--border2); background: var(--bg); color: var(--text3);
+  cursor: pointer; transition: all 0.15s;
+}
+.mt-bin-active { background: rgba(0,240,255,0.1) !important; border-color: var(--buy) !important; color: var(--buy) !important; }
+.mt-bin-sec { font-size: 18px; font-weight: 700; line-height: 1; }
+.mt-bin-unit { font-size: 11px; margin-top: 2px; }
+
+/* ── 底部固定下单面板 ── */
+.mt-order-dock {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 30;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+}
+
+.mt-dir-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+.mt-dir-btn {
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+  padding: 12px 0; border-radius: 10px; font-size: 14px; font-weight: 600;
+  border: 1px solid var(--border2); background: var(--bg); color: var(--text3);
+  cursor: pointer; transition: all 0.15s;
+}
+.mt-dir-long.mt-dir-active { background: var(--buy); color: #000; border-color: var(--buy); }
+.mt-dir-short.mt-dir-active { background: var(--sell); color: #fff; border-color: var(--sell); }
+
+.mt-input-row { display: flex; gap: 8px; margin-bottom: 10px; }
+.mt-order-input {
+  flex: 1; padding: 12px 14px; border-radius: 10px;
+  background: var(--bg); border: 1px solid var(--border2);
+  color: var(--text); font-size: 16px; font-family: monospace;
+  outline: none; transition: border-color 0.2s;
+}
+.mt-order-input:focus { border-color: var(--buy); }
+
+.mt-submit {
+  width: 100%; padding: 14px 0; border-radius: 10px;
+  font-size: 15px; font-weight: 700; border: none; cursor: pointer;
+  transition: all 0.15s;
+}
+.mt-submit:disabled { opacity: 0.5; }
+.mt-submit-long { background: var(--buy); color: #000; }
+.mt-submit-short { background: var(--sell); color: #fff; }
+
+/* ── 秒合约: Call/Put ── */
+.mt-call-put {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.mt-call, .mt-put {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 16px 0; border-radius: 12px; font-size: 15px; font-weight: 700;
+  border: none; cursor: pointer; transition: all 0.15s;
+}
+.mt-call:disabled, .mt-put:disabled { opacity: 0.5; }
+.mt-call {
+  background: linear-gradient(135deg, #00f0ff 0%, #00b8d4 100%); color: #000;
+  box-shadow: 0 4px 16px rgba(0,240,255,0.2);
+}
+.mt-call:active:not(:disabled) { transform: scale(0.97); }
+.mt-put {
+  background: linear-gradient(135deg, #ff4834 0%, #d32f2f 100%); color: #fff;
+  box-shadow: 0 4px 16px rgba(255,72,52,0.2);
+}
+.mt-put:active:not(:disabled) { transform: scale(0.97); }
+
+/* ── 倒计时 ── */
+.mt-countdown {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px; border-radius: 14px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.mt-countdown-ring {
+  position: relative; width: 80px; height: 80px; flex: none;
+}
+.mt-countdown-ring svg { width: 100%; height: 100%; }
+.mt-cd-text {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.mt-cd-num { font-size: 24px; font-weight: 700; font-family: monospace; color: var(--buy); line-height: 1; }
+.mt-cd-unit { font-size: 11px; color: var(--text3); }
+.mt-cd-label { font-size: 13px; color: var(--text3); }
+
+/* ── 最近成交 ── */
+.mt-result {
+  padding: 12px 16px; border-radius: 12px;
+  background: rgba(0,240,255,0.04); border: 1px solid rgba(0,240,255,0.2);
+  animation: slideUp 0.3s ease;
+}
+.mt-result-head { font-size: 13px; font-weight: 600; color: var(--buy); margin-bottom: 6px; }
+.mt-result-id { font-size: 12px; color: var(--text3); font-family: monospace; }
