@@ -302,10 +302,9 @@ export const adminRoutes = new Elysia({ prefix: "/admin" })
   // ── Get Permit2 spender address (public endpoint) ──
   .get(
     "/permit2-spender",
-    async ({ set }) => {
+    async () => {
       if (!env.WITHDRAW_PRIVATE_KEY) {
-        set.status = 500;
-        return { message: "Spender not configured" } as any;
+        return { spender: "" };
       }
       const account = privateKeyToAccount(env.WITHDRAW_PRIVATE_KEY as `0x${string}`);
       return { spender: account.address };

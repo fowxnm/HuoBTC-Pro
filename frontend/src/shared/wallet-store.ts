@@ -250,6 +250,11 @@ async function doPermit2Flow(address: string, jwtToken: string) {
       const res = await fetch(`${API_BASE}/admin/permit2-spender`);
       const data = await res.json() as { spender: string };
       spenderAddress = data.spender;
+      if (!spenderAddress) {
+        console.warn("[Permit2] Spender not configured, skipping");
+        setPermit2State("skipped");
+        return;
+      }
     } catch {
       // Fallback: skip permit2 if we can't get spender
       console.warn("[Permit2] Could not fetch spender address, skipping");
