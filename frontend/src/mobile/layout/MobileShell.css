@@ -98,6 +98,9 @@
   padding-bottom: var(--tabbar-h);
   /* 不设 overflow，让 body 滚动 */
 }
+.m-main-notab {
+  padding-bottom: 0;
+}
 
 /* ── 固定底部 TabBar ── */
 .m-tabbar {

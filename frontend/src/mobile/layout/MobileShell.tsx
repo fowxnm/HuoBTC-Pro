@@ -10,17 +10,20 @@ import { marketStore } from "@/stores/market";
 export function MobileShell(props: RouteSectionProps) {
   const location = useLocation();
   const hideFooter = () => location.pathname.startsWith("/trade");
+  const hideTabBar = () => location.pathname.startsWith("/trade");
 
   return (
     <div class="m-shell">
       <MobileHeader />
-      <div class="m-main">
+      <div class="m-main" classList={{ "m-main-notab": hideTabBar() }}>
         <Suspense>{props.children}</Suspense>
         <Show when={!hideFooter()}>
           <Footer />
         </Show>
       </div>
-      <BottomTabBar />
+      <Show when={!hideTabBar()}>
+        <BottomTabBar />
+      </Show>
     </div>
   );
 }

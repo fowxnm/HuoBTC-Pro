@@ -64,7 +64,7 @@ export default function MobileMarket() {
   }
 
   return (
-    <div class="px-4 py-4">
+    <div class="px-4 py-4 pb-20">
       <div class="flex items-center gap-3 mb-4">
         <h1 class="text-lg font-semibold text-[#e6edf3]">{t("market.title")}</h1>
         <span

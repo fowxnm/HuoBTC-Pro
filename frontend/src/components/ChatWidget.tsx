@@ -126,8 +126,15 @@ export default function ChatWidget() {
     return url.startsWith("http") ? url : `${API_BASE}${url}`;
   }
 
+  const isMobile = () => typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
-    <div style={{ position: "fixed", bottom: "20px", right: "20px", "z-index": "9999" }}>
+    <div style={{
+      position: "fixed",
+      bottom: isMobile() ? "68px" : "20px",
+      right: isMobile() ? "12px" : "20px",
+      "z-index": "9999",
+    }}>
       {/* Floating button */}
       <Show when={!open()}>
         <button
@@ -135,7 +142,9 @@ export default function ChatWidget() {
           onClick={() => { setOpen(true); setUnread(0); loadMessages(); }}
           style={{
             position: "relative",
-            width: "56px", height: "56px", "border-radius": "50%",
+            width: isMobile() ? "46px" : "56px",
+            height: isMobile() ? "46px" : "56px",
+            "border-radius": "50%",
             background: "linear-gradient(135deg, #6366f1, #3b82f6)",
             border: "none", cursor: "pointer", "box-shadow": "0 4px 20px rgba(99,102,241,0.4)",
             display: "flex", "align-items": "center", "justify-content": "center",
@@ -144,7 +153,7 @@ export default function ChatWidget() {
           onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.1)"}
           onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
         >
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width={isMobile() ? "22" : "26"} height={isMobile() ? "22" : "26"} viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
           <Show when={unread() > 0}>
@@ -162,9 +171,16 @@ export default function ChatWidget() {
       {/* Chat panel */}
       <Show when={open()}>
         <div style={{
-          width: "340px", height: "480px", background: "#1a1d23", "border-radius": "16px",
+          width: isMobile() ? "calc(100vw - 24px)" : "340px",
+          height: isMobile() ? "calc(100vh - 130px)" : "480px",
+          "max-width": "400px",
+          background: "#1a1d23",
+          "border-radius": isMobile() ? "12px" : "16px",
           "box-shadow": "0 8px 40px rgba(0,0,0,0.5)", display: "flex", "flex-direction": "column",
           overflow: "hidden", border: "1px solid #30363d",
+          position: isMobile() ? "fixed" as const : "relative" as const,
+          bottom: isMobile() ? "68px" : "auto",
+          right: isMobile() ? "12px" : "auto",
         }}>
           {/* Header */}
           <div style={{
